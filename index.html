@@ -25,42 +25,63 @@
             }
         }
 
-        function playRound(playerSelection, computerSelection){
+        const computerSelection = getComputerChoice();
 
-            if (computerSelection === playerSelection) {
-                return "Tie! Try Again.";
+        let computerResult = 0;
+		let humanResult = 0;
+				 
+        function game() {
+            for (i=0; i<=4; i++) {
 
-            } else if (computerSelection == "rock" && playerSelection == "paper") {
-                return "Human Won!";
+                let playerSelection = prompt();
+                // to make the choices case insensitive.
+                playerSelection = playerSelection.toLowerCase();
 
-            } else if (computerSelection == "rock" && playerSelection == "scissors") {
-                return "Computer Won! Woo Woo!"; 
+                if (computerSelection === playerSelection) {
+                    console.log("Tie!"); 
 
-            } else if (computerSelection == "paper" && playerSelection == "scissors") {
-                return "Human Won!";
-
-            } else if (computerSelection == "paper" && playerSelection == "rock") {
-                return "Computer Won! Woo Woo!";
-
-            } else if (computerSelection == "scissors" && playerSelection == "rock") {
-                return "Human Won!";
-
-            } else if (computerSelection == "scissors" && playerSelection == "paper") {
-                return "Computer Won! Woo Woo!";
-
-            } else {
-                return "What is this? Are you Kidding Human?";
+                } else if (computerSelection == "rock" && playerSelection == "paper") {
+                    console.log("Humanity scores!"); 
+                    humanResult++;
+                    
+                } else if (computerSelection == "rock" && playerSelection == "scissors") {
+                    console.log("Robots Win the Round!");
+                    computerResult++;
+                    
+                } else if (computerSelection == "paper" && playerSelection == "scissors") {
+                    console.log("Humanity scores!"); 
+                    humanResult++;
+                    
+                } else if (computerSelection == "paper" && playerSelection == "rock") {
+                    console.log("Robots Win the Round!");
+                    computerResult++;
+                    
+                } else if (computerSelection == "scissors" && playerSelection == "rock") {
+                    console.log("Humanity scores!"); 
+                    humanResult++;
+                    
+                } else if (computerSelection == "scissors" && playerSelection == "paper") {
+                    console.log("Robots Win the Round!");
+                    computerResult++;
+                 
+                } else {
+                    return "What is this? Are you Kidding Human?";
+                }
             }
 
+            //showing the last result
+            if (computerResult > humanResult) {
+                return `Computers Win! ${computerResult} - ${humanResult}`;
+            
+            } else if (humanResult > computerResult) {
+                return `People Win! ${humanResult} - ${computerResult}`;
+
+            } else {    
+                return `TIE! ${humanResult} - ${computerResult}`;
+        }
         }
 
-        const computerSelection = getComputerChoice();
-        let playerSelection = prompt();
-
-        // to make the choices case insensitive.
-        playerSelection = playerSelection.toLowerCase();
-        
-        console.log(playRound(playerSelection,computerSelection));
+    console.log(game());
 
 
     </script>
